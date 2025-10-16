@@ -42,23 +42,32 @@
             <p style="text-align: center; font-size: 12px; color: #777;">-- Akhir Dokumen Profil -- </p>
         </section>
 
-        <section id="contact">
-            <h2>Kontak Kami</h2>
-            <form action="#" method="GET">
-                <label for="txtName">Nama:</label>
-                <input type="text" id="txtName" name="txtName" placeholder="Masukkan nama" required autocomplete="name">
-
-                <label for="txtEmail">Email:</label>
-                <input type="email" id="txtEmail" name="txtEmail" placeholder="Masukkan email" required autocomplete="email">
-
-                <label for="txtPesan">Pesan:</label>
-                <textarea id="txtPesan" name="txtPesan" rows="4" placeholder="Tulis pesan anda..." required></textarea>
-
-                <button type="submit">Kirim</button>
-                <button type="reset">Batal</button>
-            </form>
-            
-        </section>
+                  <section id="contact">
+                <h2>Kontak Kami</h2>
+                <form action="#" method="GET">
+                    <div class="form-group">
+                        <label for="txtName">Nama:</label>
+                        <input type="text" id="txtName" name="txtName" placeholder="Masukkan nama" required autocomplete="name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="txtEmail">Email:</label>
+                        <input type="email" id="txtEmail" name="txtEmail" placeholder="Masukkan email" required autocomplete="email">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="txtPesan">Pesan:</label>
+                        <textarea id="txtPesan" name="txtPesan" rows="4" placeholder="Tulis pesan anda..." required></textarea>
+                    </div>
+                    
+                    <div class="button-container">
+                        <button type="submit">Kirim</button>
+                        <button type="reset">Batal</button>
+                        <button type="button" onclick="alert('Formulir disalin!')">Kirim Salinan</button>
+                    </div>
+                </form>
+            </section>
+        </div>
     </main>
 
     <footer>
