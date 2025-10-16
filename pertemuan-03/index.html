@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil Muhammad Arrasy</title>
-       <style>
+    <style>
         /* Gaya umum: Bumble simple dan lebih dekat */
         body {
             font-family: Arial, sans-serif;
@@ -115,29 +115,29 @@
             margin: 0 5px;
         }
     </style>
-
 </head>
 
 <body>
     <header>
-        <h1>Ini Header 👋</h1>  <!-- Menambahkan emoji sambutan -->
+        <h1>Ini Header 👋</h1>
         <nav>
             <ul>
-                <li><a href="#home">Beranda</a></li>
-                <li><a href="#about">Tentang</a></li>
-                <li><a href="#contact">Kontak</a></li>
+                <li><a href="#home" style="color: #000; margin: 0 5px;">Beranda</a></li>
+                <li><a href="#about" style="color: #000; margin: 0 5px;">Tentang</a></li>
+                <li><a href="#contact" style="color: #000; margin: 0 5px;">Kontak</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="home">
-            <h2>Selamat Datang </h2>
-            <p>Ini contoh paragraf HTML. 😊</p>
-        </section>
+        <div class="container">
+            <section id="home">
+                <h2>Selamat Datang</h2>
+                <p>Ini contoh paragraf HTML. 😊</p>
+            </section>
 
-        <section id="about">
-            <h2>Tentang Kami</h2>
+            <section id="about">
+                  <h2>Tentang Kami</h2>
             <p><strong>NAMA:</strong> MUHAMMAD ARRASY </p>
             <p><strong>NIM:</strong> 2511500070 </p>
             <p><strong>status:</strong> jomblo </p>
@@ -150,31 +150,36 @@
             <hr>
             <p style="text-align: center; font-size: 12px; color: #777;">-- Akhir Dokumen Profil -- </p>
         </section>
+                <hr>
+                <p style="text-align: center; font-size: 12px; color: #777; margin-top: 5px;">-- Akhir Dokumen Profil --</p>
+            </section>
 
-                  <section id="contact">
-                <h2>Kontak Kami</h2>
-                <form action="#" method="GET">
-                    <div class="form-group">
-                        <label for="txtName">Nama:</label>
-                        <input type="text" id="txtName" name="txtName" placeholder="Masukkan nama" required autocomplete="name">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="txtEmail">Email:</label>
-                        <input type="email" id="txtEmail" name="txtEmail" placeholder="Masukkan email" required autocomplete="email">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="txtPesan">Pesan:</label>
-                        <textarea id="txtPesan" name="txtPesan" rows="4" placeholder="Tulis pesan anda..." required></textarea>
-                    </div>
-                    
-                    <div class="button-container">
-                        <button type="submit">Kirim</button>
-                        <button type="reset">Batal</button>
-                        <button type="button" onclick="alert('Formulir disalin!')">Kirim Salinan</button>
-                    </div>
-                </form>
+            <section id="contact">
+                <h2>Kontak Kami</h2> <!-- Sudah ditengahkan via CSS -->
+                <div class="contact-form"> <!-- Div untuk memusatkan form -->
+                    <form action="#" method="GET">
+                        <div class="form-group">
+                            <label for="txtName">Nama:</label>
+                            <input type="text" id="txtName" name="txtName" placeholder="Masukkan nama" required autocomplete="name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="txtEmail">Email:</label>
+                            <input type="email" id="txtEmail" name="txtEmail" placeholder="Masukkan email" required autocomplete="email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="txtPesan">Pesan:</label>
+                            <textarea id="txtPesan" name="txtPesan" rows="4" placeholder="Tulis pesan anda..." required></textarea>
+                        </div>
+                        
+                        <div class="button-container">
+                            <button type="submit">Kirim</button>
+                            <button type="reset">Batal</button>
+                            <button type="button" onclick="alert('Formulir disalin!')">Kirim Salinan</button>
+                        </div>
+                    </form>
+                </div>
             </section>
         </div>
     </main>
