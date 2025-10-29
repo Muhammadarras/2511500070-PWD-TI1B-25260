@@ -1,193 +1,69 @@
-<!DOCTYPE html>
-<html lang="id">
 
-<head>
+ <DOCTYPE html>
+ <html lang="en">
+ <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil Muhammad Arrasy</title>
-    <style>
- #about {
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 20px;
-    max-width: 700px;
-    margin: 20px auto;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 10px;
-            background-color: #fff;
-        }
-        
-        /* Gaya untuk data di about: Bumble simple */
-        .data-container {
-            margin-bottom: 10px;
-        }
-        .data-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px;
-            border-bottom: 1px solid #FFCB00;
-        }
-        .data-item:last-child {
-            border-bottom: none;
-        }
-        .data-item label {
-            font-weight: bold;
-            color: #FFCB00;
-            width: 40%;
-        }
-        .data-item span {
-            width: 60%;
-            text-align: right;
-            color: #333;
-        }
-        
-        /* Gaya untuk section contact: Tengahkan */
-        #contact h2 {
-            text-align: center; 
-            color: #FFCB00; /* 
-        }
-        .contact-form {
-            max-width: 600px; /*
-            margin: 0 auto; /*  */
-            padding: 10px;
-        }
-        
-        /* Gaya untuk form: Bumble simple */
-        .form-group {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        .form-group label {
-            width: 150px;
-            font-weight: bold;
-            color: #333;
-        }
-        .form-group input, .form-group textarea {
-            flex: 1;
-            padding: 8px;
-            border: 1px solid #FFCB00;
-            border-radius: 5px;
-            max-width: 400px;
-        }
-        .form-group textarea {
-            resize: vertical;
-        }
-        
-        /* Gaya untuk tombol */
-        .button-container {
-            display: flex;
-            gap: 5px;
-            margin-top: 10px;
-            justify-content: center; /* Tengahkan tombol */
-        }
-        button {
-            padding: 8px 12px;
-            background-color: #FFCB00;
-            color: #000;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        button:hover {
-            background-color: #ffc700;
-        }
-        
-        /* Header dan footer */
-        header, footer {
-            background-color: #FFCB00;
-            color: #000;
-            padding: 10px;
-            text-align: center;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-        }
-        nav ul li {
-            margin: 0 5px;
-        }
-    </style>
-</head>
-
-<body>
+    <title>Judul Halaman</title>
+    <link rel="stylesheet" href="style.css"
+ </head>
+ <body>
     <header>
-        <h1>Ini Header 👋</h1>
-        <nav>
-            <ul>
-                <li><a href="#home" style="color: #000; margin: 0 5px;">Beranda</a></li>
-                <li><a href="#about" style="color: #000; margin: 0 5px;">Tentang</a></li>
-                <li><a href="#contact" style="color: #000; margin: 0 5px;">Kontak</a></li>
-            </ul>
-        </nav>
-    </header>
-
+      <h1>ini header</h1>
+      <button class="menu-toggle" id="menuToggle" aria-label="Togle Navigation">
+        &#9776;
+      </button>
+    
+    <nav>
+        <ul>
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
+    </nav>
+  </header>
     <main>
-        <div class="container">
-            <section id="home">
-                <h2>Selamat Datang</h2>
-                <p>Ini contoh paragraf HTML. 😊</p>
-            </section>
+      <section id="home">
+        <h2>Selamat Datang</h2>
+        <p>Ini contoh paragraf HTML.</p>
+    </section>
+    <section id="about">
+        <h2>Tentang Saya</h2>
+        <p><strong>NIM:</strong>2511500070</p>
+        <P><strong>Nama Lengkap:</strong> muhammad arrasy  &#128512;</P>
+        <p><strong>Tempat Lahir:</strong> bangka belitung</p>
+        <p><strong>Tanggal Lahir:</strong>30 april 2007</p>
+        <p><strong>Hobi:</strong> ngulik linux , diving , videografi , 3d animator , batminton</p>
+        <p><strong>Pasangan:</strong>Belum ada &hearts;</p>
+        <p><strong>Pekerjaan:</strong>Mahasiswa Atma Luhur , freelance video/fotografi pemerintahan </p>
+        <p><strong>Nama Orang Tua:</strong>Bapak Marwan Dinata dan Ibu AYU</p>
+        <p><strong>Nama Adik:</strong>Al fatih</p>
+<section id="about">
+</section>
+<section id="contact">
+  <h2>Kontak Kami</h2>
+  <form action="" method="GET">
+    <label for="txtNama">Nama:</label>
+    <input type="text" id="txtNama" name="txtNama" placeholder="Masukan nama" required autocomplete="name">
 
-            <section id="about">
-                  <h2>Tentang Kami</h2>
-            <p><strong>NAMA:</strong> MUHAMMAD ARRASY </p>
-            <p><strong>NIM:</strong> 2511500070 </p>
-            <p><strong>status:</strong> jomblo </p>
-            <p><strong>Lahir:</strong> TOBOALI, 30 April 2007 </p>
-            <p><strong>Profesi:</strong> Mahasiswa & Freelancer (Videografer/Filmmaker untuk instansi pemerintahan) 🎥
-            <p><strong>hobi:</strong> diving, advanture,ngulik arch linux/kali linux , videografi, musik</p>
-            <p><strong>Ayah:</strong> Marwan Dinata 👨</p>
-            <p><strong>Ibu:</strong> Ayu 👩</p>
-            <p><strong>Adik:</strong> Muhammad Alfatih (Fatih) 👦</p>
-            <hr>
-            <p style="text-align: center; font-size: 12px; color: #777;">-- Akhir Dokumen Profil -- </p>
-        </section>
-            <section id="contact">
-                <h2>Kontak Kami</h2> 
-                <div class="contact-form"> 
-                    <form action="#" method="GET">
-                        <div class="form-group">
-                            <label for="txtName">Nama:</label>
-                            <input type="text" id="txtName" name="txtName" placeholder="Masukkan nama" required autocomplete="name">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="txtEmail">Email:</label>
-                            <input type="email" id="txtEmail" name="txtEmail" placeholder="Masukkan email" required autocomplete="email">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="txtPesan">Pesan:</label>
-                            <textarea id="txtPesan" name="txtPesan" rows="4" placeholder="Tulis pesan anda..." required></textarea>
-                        </div>
-                        
-                        <div class="button-container">
-                            <button type="submit">Kirim</button>
-                            <button type="reset">Batal</button>
-                        </div>
-                    </form>
-                </div>
-            </section>
-        </div>
-    </main>
+    <label for="txtEmail">Email:</label>
+    <input type="email" id="txtEmail" name="txtEmail" placeholder="Masukan email" required autocomplete="email">
 
+    <label for="txtPesan"><span>Pesan Anda:</span>
+      <textarea id="txtPesan" name="txtPesan" rows="4" placeholder="Tulis pesan anda..." required></textarea>
+      <small id="charCount"> 0/200 karakter</small>
+      </label>
+
+    <button type="submit">Kirim</button>
+    <button type="reset">Batal</button>
+  </form>
+</section>
+</main>
     <footer>
-        <p>&copy; 2025 Muhammad Arrasy [2511500070]</p>
+        <p>&copy; 2025 muhammad arrasy[2511500070] &trade;</p>
     </footer>
-</body>
-</html>
+    
+    <script src="script.js"></script>
+ </body>
+ </html> 
