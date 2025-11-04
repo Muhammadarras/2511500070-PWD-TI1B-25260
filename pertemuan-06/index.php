@@ -38,7 +38,7 @@
             $pekerjaan = "Mahasiswa Atma Luhur , freelance video/fotografi pemerintahan";
             $namaOrangTua = "Bapak Marwan Dinata dan Ibu AYU";
             $namaAdik = "Al fatih";
-            
+
             echo "<p><strong>NIM:</strong> $nim</p>";
             echo "<p><strong>Nama Lengkap:</strong> $namaLengkap</p>";
             echo "<p><strong>Tempat Lahir:</strong> $tempatLahir</p>";
@@ -66,7 +66,7 @@
             $nilaiTugas2 = 50;
             $nilaiUTS2 = 60;
             $nilaiUAS2 = 80;
-
+ 
             $namaMatkul3 = "Matematika Diskrit";
             $sksMatkul3 = 3;
             $nilaiHadir3 = 85;
