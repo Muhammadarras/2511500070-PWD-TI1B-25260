@@ -28,15 +28,27 @@
         </section>
         <section id="about">
             <h2>Tentang Saya</h2>
-            <p><strong>NIM:</strong> 2511500070</p>
-            <p><strong>Nama Lengkap:</strong> muhammad arrasy &#128512;</p>
-            <p><strong>Tempat Lahir:</strong> bangka belitung</p>
-            <p><strong>Tanggal Lahir:</strong> 30 april 2007</p>
-            <p><strong>Hobi:</strong> ngulik linux , diving , videografi , 3d animator , batminton</p>
-            <p><strong>Pasangan:</strong> Belum ada &hearts;</p>
-            <p><strong>Pekerjaan:</strong> Mahasiswa Atma Luhur , freelance video/fotografi pemerintahan</p>
-            <p><strong>Nama Orang Tua:</strong> Bapak Marwan Dinata dan Ibu AYU</p>
-            <p><strong>Nama Adik:</strong> Al fatih</p>
+            <?php
+            $nim = "2511500070";
+            $namaLengkap = "muhammad arrasy &#128512;";
+            $tempatLahir = "bangka belitung";
+            $tanggalLahir = "30 april 2007";
+            $hobi = "ngulik linux , diving , videografi , 3d animator , batminton";
+            $pasangan = "Belum ada &hearts;";
+            $pekerjaan = "Mahasiswa Atma Luhur , freelance video/fotografi pemerintahan";
+            $namaOrangTua = "Bapak Marwan Dinata dan Ibu AYU";
+            $namaAdik = "Al fatih";
+            
+            echo "<p><strong>NIM:</strong> $nim</p>";
+            echo "<p><strong>Nama Lengkap:</strong> $namaLengkap</p>";
+            echo "<p><strong>Tempat Lahir:</strong> $tempatLahir</p>";
+            echo "<p><strong>Tanggal Lahir:</strong> $tanggalLahir</p>";
+            echo "<p><strong>Hobi:</strong> $hobi</p>";
+            echo "<p><strong>Pasangan:</strong> $pasangan</p>";
+            echo "<p><strong>Pekerjaan:</strong> $pekerjaan</p>";
+            echo "<p><strong>Nama Orang Tua:</strong> $namaOrangTua</p>";
+            echo "<p><strong>Nama Adik:</strong> $namaAdik</p>";
+            ?>
         </section>
         <section id="ipk">
             <h2>Nilai Saya</h2>
