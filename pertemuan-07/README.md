@@ -10,5 +10,5 @@ belajar:<br>
     <li>download dan exstrak latihan pertemuan 07 malam  </li>
     <li>             <form action="Proses.php" method="POST" merubah ini di dalam php>
 </li>
-    <li>variabel php</li>
+    <li>buat file proses</li>
     </ol>

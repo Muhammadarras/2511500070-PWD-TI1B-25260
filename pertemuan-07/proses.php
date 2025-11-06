@@ -1,4 +1,4 @@
 <?php
-   echo "ijan"
-  
-   <?
+   echo $_POST ["txtNama"];
+   echo $_POST ["txtEmail"]
+   ?>
