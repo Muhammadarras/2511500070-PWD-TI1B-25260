@@ -17,9 +17,10 @@ if (isset($_SESSION["sespesan"])):
 endif;
 
 $mahasiswa = isset($_SESSION["mahasiswa"]) ? $_SESSION["mahasiswa"] : [];
-if (!empty($mahasiswa)) {
-    unset($_SESSION["mahasiswa"]);
-}
+// Hapus bagian ini agar data tetap di session
+// if (!empty($mahasiswa)) {
+//     unset($_SESSION["mahasiswa"]);
+// }
 ?>
 
 <!DOCTYPE html>
@@ -53,6 +54,7 @@ if (!empty($mahasiswa)) {
       <h2>Selamat Datang</h2>
       <?php
       echo "halo dunia!<br>";
+      echo "nama saya hadi";
       ?>
       <p>Ini contoh paragraf HTML.</p>
     </section>
@@ -108,7 +110,7 @@ if (!empty($mahasiswa)) {
     <section id="about">
       <?php
       $nim_default = "2511500070";
-      $nama_default = "muhammad arrasy";
+      $nama_default = "muhammad arrasy &#128512;";
       $tempat_default = "bangka belitung";
       $tanggal_default = "30 april 2007";
       $hobi_default = "ngulik linux , diving , videografi , 3d animator , batminton";
