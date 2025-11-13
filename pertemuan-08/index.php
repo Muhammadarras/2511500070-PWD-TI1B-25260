@@ -1,3 +1,27 @@
+<?php
+session_start();
+
+$sesnama = "";
+if (isset($_SESSION["sesnama"])):
+  $sesnama = $_SESSION["sesnama"];
+endif;
+
+$sesemail = "";
+if (isset($_SESSION["sesemail"])):
+  $sesemail = $_SESSION["sesemail"];
+endif;
+
+$sespesan = "";
+if (isset($_SESSION["sespesan"])):
+  $sespesan = $_SESSION["sespesan"];
+endif;
+
+$mahasiswa = isset($_SESSION["mahasiswa"]) ? $_SESSION["mahasiswa"] : [];
+if (!empty($mahasiswa)) {
+    unset($_SESSION["mahasiswa"]);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +41,7 @@
     <nav>
       <ul>
         <li><a href="#home">Beranda</a></li>
-        <li><a href="#entry-mahasiswa">Entry Data Mahasiswa</a></li>
+        <li><a href="#entry-mahasiswa">Entry Data Mahasiswa</a></li> 
         <li><a href="#about">Tentang</a></li>
         <li><a href="#contact">Kontak</a></li>
       </ul>
@@ -28,52 +52,53 @@
     <section id="home">
       <h2>Selamat Datang</h2>
       <?php
-      echo "halo dunia!<br>"
+      echo "halo dunia!<br>";
+      echo "nama saya hadi";
       ?>
       <p>Ini contoh paragraf HTML.</p>
     </section>
 
     <section id="entry-mahasiswa">
       <h2>Entry Data Mahasiswa</h2>
-      <form action="process.php" method="POST">
+      <form action="process_entry.php" method="POST"> 
         <label for="nim"><span>NIM:</span>
-          <input type="text" id="nim" name="nim" placeholder="Masukkan NIM" required autocomplete="off">
+          <input type="text" id="nim" name="nim" placeholder="Masukkan NIM" required>
         </label>
 
-        <label for="namaLengkap"><span>Nama Lengkap:</span>
-          <input type="text" id="namaLengkap" name="namaLengkap" placeholder="Masukkan nama lengkap" required autocomplete="name">
+        <label for="nama_lengkap"><span>Nama Lengkap:</span>
+          <input type="text" id="nama_lengkap" name="nama_lengkap" placeholder="Masukkan nama lengkap" required>
         </label>
 
-        <label for="tempatLahir"><span>Tempat Lahir:</span>
-          <input type="text" id="tempatLahir" name="tempatLahir" placeholder="Masukkan tempat lahir" required autocomplete="address-level2">
+        <label for="tempat_lahir"><span>Tempat Lahir:</span>
+          <input type="text" id="tempat_lahir" name="tempat_lahir" placeholder="Masukkan tempat lahir" required>
         </label>
 
-        <label for="tanggalLahir"><span>Tanggal Lahir:</span>
-          <input type="date" id="tanggalLahir" name="tanggalLahir" required>
+        <label for="tanggal_lahir"><span>Tanggal Lahir:</span>
+          <input type="date" id="tanggal_lahir" name="tanggal_lahir" required>
         </label>
 
         <label for="hobi"><span>Hobi:</span>
-          <input type="text" id="hobi" name="hobi" placeholder="Masukkan hobi" required autocomplete="off">
+          <input type="text" id="hobi" name="hobi" placeholder="Masukkan hobi">
         </label>
 
         <label for="pasangan"><span>Pasangan:</span>
-          <input type="text" id="pasangan" name="pasangan" placeholder="Masukkan nama pasangan" autocomplete="off">
+          <input type="text" id="pasangan" name="pasangan" placeholder="Masukkan nama pasangan">
         </label>
 
         <label for="pekerjaan"><span>Pekerjaan:</span>
-          <input type="text" id="pekerjaan" name="pekerjaan" placeholder="Masukkan pekerjaan" required autocomplete="organization-title">
+          <input type="text" id="pekerjaan" name="pekerjaan" placeholder="Masukkan pekerjaan">
         </label>
 
-        <label for="namaOrangTua"><span>Nama Orang Tua:</span>
-          <input type="text" id="namaOrangTua" name="namaOrangTua" placeholder="Masukkan nama orang tua" required autocomplete="name">
+        <label for="nama_orang_tua"><span>Nama Orang Tua:</span>
+          <input type="text" id="nama_orang_tua" name="nama_orang_tua" placeholder="Masukkan nama orang tua">
         </label>
 
-        <label for="namaKakak"><span>Nama Kakak:</span>
-          <input type="text" id="namaKakak" name="namaKakak" placeholder="Masukkan nama kakak" autocomplete="name">
+        <label for="nama_kakak"><span>Nama Kakak:</span>
+          <input type="text" id="nama_kakak" name="nama_kakak" placeholder="Masukkan nama kakak">
         </label>
 
-        <label for="namaAdik"><span>Nama Adik:</span>
-          <input type="text" id="namaAdik" name="namaAdik" placeholder="Masukkan nama adik" autocomplete="name">
+        <label for="nama_adik"><span>Nama Adik:</span>
+          <input type="text" id="nama_adik" name="nama_adik" placeholder="Masukkan nama adik">
         </label>
 
         <button type="submit">Kirim</button>
@@ -83,189 +108,33 @@
 
     <section id="about">
       <?php
-      session_start();
-
-      $NIM = isset($_SESSION['nim']) ? $_SESSION['nim'] : '2511500070';
-      $Nama = isset($_SESSION['namaLengkap']) ? $_SESSION['namaLengkap'] : 'muhammad arrasy &#128512;';
-      $tempatlahir = isset($_SESSION['tempatLahir']) ? $_SESSION['tempatLahir'] : "bangka belitung";
-      $tanggallahir = isset($_SESSION['tanggalLahir']) ? $_SESSION['tanggalLahir'] : "30 april 2007";
-      $hobi = isset($_SESSION['hobi']) ? $_SESSION['hobi'] : "ngulik linux , diving , videografi , 3d animator , batminton";
-      $pasangan = isset($_SESSION['pasangan']) ? $_SESSION['pasangan'] : "Belum ada &hearts;";
-      $pekerjaan = isset($_SESSION['pekerjaan']) ? $_SESSION['pekerjaan'] : "Mahasiswa Atma Luhur , freelance video/fotografi pemerintahan";
-      $namaOrangTua = isset($_SESSION['namaOrangTua']) ? $_SESSION['namaOrangTua'] : "Bapak Marwan Dinata dan Ibu AYU";
-      $namaKakak = isset($_SESSION['namaKakak']) ? $_SESSION['namaKakak'] : ""; // Default kosong, hanya tampil jika ada
-      $namaAdik = isset($_SESSION['namaAdik']) ? $_SESSION['namaAdik'] : "Al fatih";
+      $nim_default = "2511500070";
+      $nama_default = "muhammad arrasy &#128512;";
+      $tempat_default = "bangka belitung";
+      $tanggal_default = "30 april 2007";
+      $hobi_default = "ngulik linux , diving , videografi , 3d animator , batminton";
+      $pasangan_default = "Belum ada &hearts;";
+      $pekerjaan_default = "Mahasiswa Atma Luhur , freelance video/fotografi pemerintahan";
+      $orang_tua_default = "Bapak Marwan Dinata dan Ibu AYU";
+      $kakak_default = "Belum diisi"; 
+      $adik_default = "Al fatih";
       ?>
       <h2>Tentang Saya</h2>
-      <p><strong>NIM:</strong> <?php echo $NIM; ?></p>
-      <p><strong>Nama Lengkap:</strong> <?php echo $Nama; ?></p>
-      <p><strong>Tempat Lahir:</strong> <?php echo $tempatlahir; ?></p>
-      <p><strong>Tanggal Lahir:</strong> <?php echo $tanggallahir; ?></p>
-      <p><strong>Hobi:</strong> <?php echo $hobi; ?></p>
-      <p><strong>Pasangan:</strong> <?php echo $pasangan; ?></p>
-      <p><strong>Pekerjaan:</strong> <?php echo $pekerjaan; ?></p>
-      <p><strong>Nama Orang Tua:</strong> <?php echo $namaOrangTua; ?></p>
-      <?php if (!empty($namaKakak)): ?>
-        <p><strong>Nama Kakak:</strong> <?php echo $namaKakak; ?></p>
-      <?php endif; ?>
-      <p><strong>Nama Adik:</strong> <?php echo $namaAdik; ?></p>
-    </section>
-
-    <section id="ipk">
-      <h2>Nilai Saya</h2>
-      <?php
-      $namaMatkul1 = "Algoritma dan Struktur Data";
-      $sksMatkul1 = 4;
-      $nilaiHadir1 = 90;
-      $nilaiTugas1 = 60;
-      $nilaiUTS1 = 80;
-      $nilaiUAS1 = 70;
-
-      $namaMatkul2 = "Agama";
-      $sksMatkul2 = 2;
-      $nilaiHadir2 = 70;
-      $nilaiTugas2 = 50;
-      $nilaiUTS2 = 60;
-      $nilaiUAS2 = 80;
-
-      $namaMatkul3 = "Matematika Diskrit";
-      $sksMatkul3 = 3;
-      $nilaiHadir3 = 85;
-      $nilaiTugas3 = 75;
-      $nilaiUTS3 = 85;
-      $nilaiUAS3 = 90;
-
-      $namaMatkul4 = "Bahasa Inggris";
-      $sksMatkul4 = 2;
-      $nilaiHadir4 = 95;
-      $nilaiTugas4 = 80;
-      $nilaiUTS4 = 75;
-      $nilaiUAS4 = 85;
-
-      $namaMatkul5 = "Pemrograman Web Dasar";
-      $sksMatkul5 = 3;
-      $nilaiHadir5 = 69;
-      $nilaiTugas5 = 80;
-      $nilaiUTS5 = 90;
-      $nilaiUAS5 = 100;
-
-      $matkul = [
-          1 => ['nama' => $namaMatkul1, 'sks' => $sksMatkul1, 'hadir' => $nilaiHadir1, 'tugas' => $nilaiTugas1, 'uts' => $nilaiUTS1, 'uas' => $nilaiUAS1],
-          2 => ['nama' => $namaMatkul2, 'sks' => $sksMatkul2, 'hadir' => $nilaiHadir2, 'tugas' => $nilaiTugas2, 'uts' => $nilaiUTS2, 'uas' => $nilaiUAS2],
-          3 => ['nama' => $namaMatkul3, 'sks' => $sksMatkul3, 'hadir' => $nilaiHadir3, 'tugas' => $nilaiTugas3, 'uts' => $nilaiUTS3, 'uas' => $nilaiUAS3],
-          4 => ['nama' => $namaMatkul4, 'sks' => $sksMatkul4, 'hadir' => $nilaiHadir4, 'tugas' => $nilaiTugas4, 'uts' => $nilaiUTS4, 'uas' => $nilaiUAS4],
-          5 => ['nama' => $namaMatkul5, 'sks' => $sksMatkul5, 'hadir' => $nilaiHadir5, 'tugas' => $nilaiTugas5, 'uts' => $nilaiUTS5, 'uas' => $nilaiUAS5]
-      ];
-
-      $totalBobot = 0;
-      $totalSKS = 0;
-
-      for ($i = 1; $i <= 5; $i++) {
-          $nama = $matkul[$i]['nama'];
-          $sks = $matkul[$i]['sks'];
-          $hadir = $matkul[$i]['hadir'];
-          $tugas = $matkul[$i]['tugas'];
-          $uts = $matkul[$i]['uts'];
-          $uas = $matkul[$i]['uas'];
-
-          $nilaiAkhir = (0.1 * $hadir) + (0.2 * $tugas) + (0.3 * $uts) + (0.4 * $uas);
-
-          if ($hadir < 70) {
-              $grade = 'E';
-          } else {
-              if ($nilaiAkhir >= 85) {
-                  $grade = 'A';
-              } elseif ($nilaiAkhir >= 80) {
-                  $grade = 'A-';
-              } elseif ($nilaiAkhir >= 75) {
-                  $grade = 'B+';
-              } elseif ($nilaiAkhir >= 70) {
-                  $grade = 'B';
-              } elseif ($nilaiAkhir >= 65) {
-                  $grade = 'B-';
-              } elseif ($nilaiAkhir >= 60) {
-                  $grade = 'C+';
-              } elseif ($nilaiAkhir >= 55) {
-                  $grade = 'C';
-              } elseif ($nilaiAkhir >= 50) {
-                  $grade = 'C-';
-              } elseif ($nilaiAkhir >= 45) {
-                  $grade = 'D';
-              } else {
-                  $grade = 'E';
-              }
-          }
-
-          switch ($grade) {
-              case 'A':
-                  $mutu = 4.00;
-                  break;
-              case 'A-':
-                  $mutu = 3.70;
-                  break;
-              case 'B+':
-                  $mutu = 3.30;
-                  break;
-              case 'B':
-                  $mutu = 3.00;
-                  break;
-              case 'B-':
-                  $mutu = 2.70;
-                  break;
-              case 'C+':
-                  $mutu = 2.30;
-                  break;
-              case 'C':
-                  $mutu = 2.00;
-                  break;
-              case 'C-':
-                  $mutu = 1.70;
-                  break;
-              case 'D':
-                  $mutu = 1.00;
-                  break;
-              case 'E':
-                  $mutu = 0.00;
-                  break;
-              default:
-                  $mutu = 0.00;
-          }
-
-          $bobot = $mutu * $sks;
-
-          $status = (in_array($grade, ['A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-'])) ? 'LULUS' : 'GAGAL';
-
-          $totalBobot += $bobot;
-          $totalSKS += $sks;
-
-          echo "<div class='matkul-item'>";
-          echo "<p><span class='label'>Nama Matakuliah ke-$i :</span> <span class='value'>$nama</span></p>";
-          echo "<p><span class='label'>SKS :</span> <span class='value'>$sks</span></p>";
-          echo "<p><span class='label'>Kehadiran :</span> <span class='value'>$hadir</span></p>";
-          echo "<p><span class='label'>Tugas :</span> <span class='value'>$tugas</span></p>";
-          echo "<p><span class='label'>UTS :</span> <span class='value'>$uts</span></p>";
-          echo "<p><span class='label'>UAS :</span> <span class='value'>$uas</span></p>";
-          echo "<p><span class='label'>Nilai Akhir :</span> <span class='value'>" . number_format($nilaiAkhir, 0) . "</span></p>";
-          echo "<p><span class='label'>Grade :</span> <span class='value'>$grade</span></p>";
-          echo "<p><span class='label'>Angka Mutu :</span> <span class='value'>" . number_format($mutu, 2) . "</span></p>";
-          echo "<p><span class='label'>Bobot :</span> <span class='value'>" . number_format($bobot, 2) . "</span></p>";
-          echo "<p><span class='label'>Status :</span> <span class='value'>$status</span></p>";
-          echo "<hr>";
-          echo "</div>";
-      }
-
-      $IPK = ($totalSKS > 0) ? $totalBobot / $totalSKS : 0;
-      echo "<div class='total-section'>";
-      echo "<p><span class='label'>Total Bobot :</span> <span class='value'>" . number_format($totalBobot, 2) . "</span></p>";
-      echo "<p><span class='label'>Total SKS :</span> <span class='value'>$totalSKS</span></p>";
-      echo "<p><span class='label'>IPK :</span> <span class='value'>" . number_format($IPK, 2) . "</span></p>";
-      echo "</div>";
-      ?>
+      <p><strong>NIM:</strong> <?php echo htmlspecialchars($mahasiswa['nim'] ?? $nim_default); ?></p>
+      <p><strong>Nama Lengkap:</strong> <?php echo htmlspecialchars($mahasiswa['nama_lengkap'] ?? $nama_default); ?></p>
+      <p><strong>Tempat Lahir:</strong> <?php echo htmlspecialchars($mahasiswa['tempat_lahir'] ?? $tempat_default); ?></p>
+      <p><strong>Tanggal Lahir:</strong> <?php echo htmlspecialchars($mahasiswa['tanggal_lahir'] ?? $tanggal_default); ?></p>
+      <p><strong>Hobi:</strong> <?php echo htmlspecialchars($mahasiswa['hobi'] ?? $hobi_default); ?></p>
+      <p><strong>Pasangan:</strong> <?php echo htmlspecialchars($mahasiswa['pasangan'] ?? $pasangan_default); ?></p>
+      <p><strong>Pekerjaan:</strong> <?php echo htmlspecialchars($mahasiswa['pekerjaan'] ?? $pekerjaan_default); ?></p>
+      <p><strong>Nama Orang Tua:</strong> <?php echo htmlspecialchars($mahasiswa['nama_orang_tua'] ?? $orang_tua_default); ?></p>
+      <p><strong>Nama Kakak:</strong> <?php echo htmlspecialchars($mahasiswa['nama_kakak'] ?? $kakak_default); ?></p>
+      <p><strong>Nama Adik:</strong> <?php echo htmlspecialchars($mahasiswa['nama_adik'] ?? $adik_default); ?></p>
     </section>
 
     <section id="contact">
       <h2>Kontak Kami</h2>
-      <form action="" method="POST">
+      <form action="proses.php" method="POST">
         <label for="txtNama"><span>Nama:</span>
           <input type="text" id="txtNama" name="txtNama" placeholder="Masukkan nama" required autocomplete="name">
         </label>
@@ -282,11 +151,19 @@
         <button type="submit">Kirim</button>
         <button type="reset">Batal</button>
       </form>
+
+      <?php if (!empty($sesnama)): ?>
+        <br><hr>
+        <h2>Yang menghubungi kami</h2>
+        <p><strong>Nama :</strong> <?php echo $sesnama ?></p>
+        <p><strong>Email :</strong> <?php echo $sesemail ?></p>
+        <p><strong>Pesan :</strong> <?php echo $sespesan ?></p>
+      <?php endif; ?>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 muhammad arrasy [2511500070]</p>
+    <p>&copy; 2025 muhammad arrasy [2511500070] &trade;</p> 
   </footer>
 
   <script src="script.js"></script>
