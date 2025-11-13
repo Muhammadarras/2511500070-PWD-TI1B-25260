@@ -171,6 +171,93 @@ header li a:active {
     }
 }
 
+/* Styling untuk #entry-mahasiswa, mengikuti aturan styling #contact */
+#entry-mahasiswa {
+    background-color: #6c6e73;
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 700px;
+    margin: 40px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #f0f0f0;
+}
+
+#entry-mahasiswa h2 {
+    color: #66b2ff;
+    border-bottom: 2px solid #ffffff;
+    padding-bottom: 8px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+#entry-mahasiswa label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #cccccc;
+}
+
+#entry-mahasiswa input,
+#entry-mahasiswa textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    background-color: #2a2a2a;
+    border: 1px solid #444444;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+#entry-mahasiswa input::placeholder,
+#entry-mahasiswa textarea::placeholder {
+    color: #999999;
+}
+
+#entry-mahasiswa input:focus,
+#entry-mahasiswa textarea:focus {
+    border-color: #ffffff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(102, 178, 255, 0.4);
+}
+
+#entry-mahasiswa button {
+    padding: 10px 18px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: #f3f4f6;
+    color: #1e1e1e;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#entry-mahasiswa button:hover {
+    background-color: #3399ff;
+}
+
+@media (max-width: 600px) {
+    #entry-mahasiswa {
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    #entry-mahasiswa h2 {
+        font-size: 20px;
+    }
+
+    #entry-mahasiswa button {
+        width: 100%;
+        margin-top: 20px;
+        margin-right: 0;
+        font-size: 15px;
+    }
+}
+
 #contact {
     background-color: #6c6e73;
     border-radius: 12px;
@@ -256,6 +343,7 @@ header li a:active {
         font-size: 15px;
     }
 }
+
 #ipk {
     display: flex;
     flex-direction: column;
