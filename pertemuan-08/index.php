@@ -53,7 +53,6 @@ if (!empty($mahasiswa)) {
       <h2>Selamat Datang</h2>
       <?php
       echo "halo dunia!<br>";
-      echo "nama saya hadi";
       ?>
       <p>Ini contoh paragraf HTML.</p>
     </section>
@@ -109,7 +108,7 @@ if (!empty($mahasiswa)) {
     <section id="about">
       <?php
       $nim_default = "2511500070";
-      $nama_default = "muhammad arrasy &#128512;";
+      $nama_default = "muhammad arrasy";
       $tempat_default = "bangka belitung";
       $tanggal_default = "30 april 2007";
       $hobi_default = "ngulik linux , diving , videografi , 3d animator , batminton";
