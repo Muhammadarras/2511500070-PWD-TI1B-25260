@@ -28,14 +28,12 @@
     <section id="home">
       <h2>Selamat Datang</h2>
       <?php
-      // Menampilkan pesan sederhana dengan PHP
       echo "halo dunia!<br>";
       echo "nama saya hadi";
       ?>
       <p>Ini contoh paragraf HTML.</p>
     </section>
 
-    <!-- Section baru: Entry Data Mahasiswa (di atas #about, mengikuti styling #contact) -->
     <section id="entry-mahasiswa">
       <h2>Entry Data Mahasiswa</h2>
       <form action="process.php" method="POST">
@@ -86,10 +84,8 @@
 
     <section id="about">
       <?php
-      // Mulai session untuk mengambil data dari form
       session_start();
 
-      // Gunakan data dari session jika ada, jika tidak gunakan default dari data yang diberikan pengguna
       $NIM = isset($_SESSION['nim']) ? $_SESSION['nim'] : '2511500070';
       $Nama = isset($_SESSION['namaLengkap']) ? $_SESSION['namaLengkap'] : 'muhammad arrasy &#128512;';
       $tempatlahir = isset($_SESSION['tempatLahir']) ? $_SESSION['tempatLahir'] : "bangka belitung";
@@ -119,7 +115,6 @@
     <section id="ipk">
       <h2>Nilai Saya</h2>
       <?php
-      // Data mata kuliah dari pengguna
       $namaMatkul1 = "Algoritma dan Struktur Data";
       $sksMatkul1 = 4;
       $nilaiHadir1 = 90;
@@ -155,7 +150,6 @@
       $nilaiUTS5 = 90;
       $nilaiUAS5 = 100;
 
-      // Array untuk menyimpan data mata kuliah
       $matkul = [
           1 => ['nama' => $namaMatkul1, 'sks' => $sksMatkul1, 'hadir' => $nilaiHadir1, 'tugas' => $nilaiTugas1, 'uts' => $nilaiUTS1, 'uas' => $nilaiUAS1],
           2 => ['nama' => $namaMatkul2, 'sks' => $sksMatkul2, 'hadir' => $nilaiHadir2, 'tugas' => $nilaiTugas2, 'uts' => $nilaiUTS2, 'uas' => $nilaiUAS2],
@@ -167,7 +161,6 @@
       $totalBobot = 0;
       $totalSKS = 0;
 
-      // Loop untuk menghitung dan menampilkan setiap mata kuliah
       for ($i = 1; $i <= 5; $i++) {
           $nama = $matkul[$i]['nama'];
           $sks = $matkul[$i]['sks'];
@@ -176,10 +169,8 @@
           $uts = $matkul[$i]['uts'];
           $uas = $matkul[$i]['uas'];
 
-          // Hitung nilai akhir
           $nilaiAkhir = (0.1 * $hadir) + (0.2 * $tugas) + (0.3 * $uts) + (0.4 * $uas);
 
-          // Tentukan grade berdasarkan nilai akhir dan kehadiran
           if ($hadir < 70) {
               $grade = 'E';
           } else {
