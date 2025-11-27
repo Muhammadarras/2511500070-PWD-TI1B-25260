@@ -201,7 +201,7 @@ endif;
   </main>
 
   <footer>
-    <p>&copy; muhammad arrasy [2511500070]</p>
+    <p>&copy; 2025 Yohanes Setiawan Japriadi [0344300002]</p>
   </footer>
 
   <script src="script.js"></script>
