@@ -17,10 +17,6 @@ if (isset($_SESSION["sespesan"])):
 endif;
 
 $mahasiswa = isset($_SESSION["mahasiswa"]) ? $_SESSION["mahasiswa"] : [];
-// Hapus bagian ini agar data tetap di session
-// if (!empty($mahasiswa)) {
-//     unset($_SESSION["mahasiswa"]);
-// }
 ?>
 
 <!DOCTYPE html>
