@@ -35,14 +35,13 @@ $fieldConfig = [
 ];
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Judul Halaman</title>
+  <title>muhammad arrasy </title>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -161,7 +160,7 @@ $fieldConfig = [
   </main>
 
   <footer>
-    <p>&copy; 2025 Yohanes Setiawan Japriadi [0344300002]</p>
+    <p>&copy; muhammad arrasy [2511500070]</p>
   </footer>
 
   <script src="script.js"></script>
