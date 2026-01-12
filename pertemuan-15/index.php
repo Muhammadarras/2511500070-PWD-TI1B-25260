@@ -104,13 +104,7 @@ require_once __DIR__ . '/fungsi.php';
       "adik" => ["label" => "Nama Adik:", "suffix" => ""],
     ];
     ?>
-
-      <section id="daftar-biodata">
-    <hr>
-    <h2>Daftar Record Biodata Mahasiswa</h2>
-    <?php include 'read_biodata.php'; ?>
-</section>
-
+    
 
     <section id="about">
       <h2>Tentang Saya</h2>
@@ -118,11 +112,11 @@ require_once __DIR__ . '/fungsi.php';
     </section>
 
     <?php
-    $flash_sukses = $_SESSION['flash_sukses'] ?? ''; #jika query sukses
-    $flash_error  = $_SESSION['flash_error'] ?? ''; #jika ada error
-    $old          = $_SESSION['old'] ?? []; #untuk nilai lama form
+    $flash_sukses = $_SESSION['flash_sukses'] ?? ''; 
+    $flash_error  = $_SESSION['flash_error'] ?? ''; 
+    $old          = $_SESSION['old'] ?? []; 
 
-    unset($_SESSION['flash_sukses'], $_SESSION['flash_error'], $_SESSION['old']); #bersihkan 3 session ini
+    unset($_SESSION['flash_sukses'], $_SESSION['flash_error'], $_SESSION['old']); 
     ?>
 
     <section id="contact">

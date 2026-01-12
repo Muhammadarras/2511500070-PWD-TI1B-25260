@@ -1,0 +1,42 @@
+<?php
+session_start();
+require_once __DIR__ . '/koneksi.php';
+require_once __DIR__ . '/fungsi.php';
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    redirect_ke('index.php');
+}
+
+// Sanitasi input
+$nim    = bersihkan($_POST['txtNim'] ?? '');
+$nama   = bersihkan($_POST['txtNmLengkap'] ?? '');
+$t4     = bersihkan($_POST['txtT4Lhr'] ?? '');
+$tgl    = bersihkan($_POST['txtTglLhr'] ?? '');
+$hobi   = bersihkan($_POST['txtHobi'] ?? '');
+$psg    = bersihkan($_POST['txtPasangan'] ?? '');
+$krj    = bersihkan($_POST['txtKerja'] ?? '');
+$ortu   = bersihkan($_POST['txtNmOrtu'] ?? '');
+$kk     = bersihkan($_POST['txtNmKakak'] ?? '');
+$adk    = bersihkan($_POST['txtNmAdik'] ?? '');
+
+// Gunakan underscore sesuai gambar database Anda
+$sql = "INSERT INTO biodata_mahasiswa 
+        (nim, nama_lengkap, tempat_lahir, tanggal_lahir, hobi, pasangan, pekerjaan, nama_ortu, nama_kakak, nama_adik) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+$stmt = mysqli_prepare($conn, $sql);
+
+if ($stmt) {
+    mysqli_stmt_bind_param($stmt, "ssssssssss", $nim, $nama, $t4, $tgl, $hobi, $psg, $krj, $ortu, $kk, $adk);
+    
+    if (mysqli_stmt_execute($stmt)) {
+        $_SESSION['flash_sukses'] = "Data berhasil disimpan!";
+        // Simpan ke session untuk bagian "Tentang Saya"
+        $_SESSION['biodata'] = $_POST; 
+    } else {
+        $_SESSION['flash_error'] = "Gagal simpan ke database.";
+    }
+    mysqli_stmt_close($stmt);
+}
+
+redirect_ke('index.php');

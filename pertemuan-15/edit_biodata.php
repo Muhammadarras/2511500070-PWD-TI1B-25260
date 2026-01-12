@@ -3,7 +3,6 @@ session_start();
 require_once __DIR__ . '/koneksi.php';
 require_once __DIR__ . '/fungsi.php';
 
-// 1. Ambil ID dari link yang diklik di tabel (index.php)
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
 if (!$id) {
