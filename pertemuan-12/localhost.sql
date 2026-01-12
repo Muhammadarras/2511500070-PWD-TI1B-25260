@@ -19,7 +19,7 @@ CREATE TABLE tbl_tamu (
 
 
 INSERT INTO tbl_tamu (cid, cnama, cemail, cpesan) VALUES
-(1, 'salsabila rizkiya', '2522500056@mahasiswa.atmaluhur.ac.id', 'beginilah caranya'),
+(1, 'muhammad arrasy', '2511500070@mahasiswa.atmaluhur.ac.id', 'beginilah caranya'),
 (2, 'fitriani', 'fitriani@gmail.com', 'anjayani'),
 (3, 'frizki ', 'frizki@gmail.com', 'wee kemn');
 
