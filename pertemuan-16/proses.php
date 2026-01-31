@@ -1,110 +1,72 @@
 <?php
 session_start();
-require __DIR__ . './koneksi.php';
+require_once __DIR__ . '/koneksi.php';
 require_once __DIR__ . '/fungsi.php';
 
-#cek method form, hanya izinkan POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-  $_SESSION['flash_error'] = 'Akses tidak valid.';
-  redirect_ke('index.php#contact');
+    header("Location: index.php");
+    exit;
 }
 
-#ambil dan bersihkan nilai dari form
-$nama  = bersihkan($_POST['txtNama']  ?? '');
-$email = bersihkan($_POST['txtEmail'] ?? '');
-$pesan = bersihkan($_POST['txtPesan'] ?? '');
-$captcha = bersihkan($_POST['txtCaptcha'] ?? '');
+if (isset($_POST['txtNim'])) {
+    // 1. Sanitasi
+    $nim    = bersihkan($_POST['txtNim']);
+    $nama   = bersihkan($_POST['txtNmLengkap']);
+    $t4     = bersihkan($_POST['txtT4Lhr']);
+    $tgl    = bersihkan($_POST['txtTglLhr']);
+    $hobi   = bersihkan($_POST['txtHobi']);
+    $psg    = bersihkan($_POST['txtPasangan']);
+    $krj    = bersihkan($_POST['txtKerja']);
+    $ortu   = bersihkan($_POST['txtNmOrtu']);
+    $kk     = bersihkan($_POST['txtNmKakak']);
+    $adk    = bersihkan($_POST['txtNmAdik']);
 
-#Validasi sederhana
-$errors = []; #ini array untuk menampung semua error yang ada
-
-if ($nama === '') {
-  $errors[] = 'Nama wajib diisi.';
+    if (empty($nim) || empty($nama)) {
+        $_SESSION['flash_error'] = "NIM dan Nama Lengkap wajib diisi!";
+        header("Location: index.php#biodata");
+        exit;
+    }
+    $_SESSION["biodata"] = [
+        "nim" => $nim, "nama" => $nama, "tempat" => $t4, "tanggal" => $tgl,
+        "hobi" => $hobi, "pasangan" => $psg, "pekerjaan" => $krj, 
+        "ortu" => $ortu, "kakak" => $kk, "adik" => $adk
+    ];
+    $sql = "INSERT INTO biodata_ (nim, nama_lengkap, tempat_lahir, tanggal_lahir, hobi, pasangan, pekerjaan, nama_ortu, nama_kakak, nama_adik) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "ssssssssss", $nim, $nama, $t4, $tgl, $hobi, $psg, $krj, $ortu, $kk, $adk);
+    
+    if (mysqli_stmt_execute($stmt)) {
+        $_SESSION['flash_sukses'] = "Biodata berhasil disimpan ke database!";
+    } else {
+        $_SESSION['flash_error'] = "Gagal menyimpan: " . mysqli_error($conn);
+    }
+    
+    mysqli_stmt_close($stmt);
+    
+    header("Location: index.php#about");
+    exit;
 }
 
-if ($email === '') {
-  $errors[] = 'Email wajib diisi.';
-} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-  $errors[] = 'Format e-mail tidak valid.';
+if (isset($_POST['txtEmail'])) {
+    $nama = bersihkan($_POST['txtNama']);
+    $email = bersihkan($_POST['txtEmail']);
+    $pesan = bersihkan($_POST['txtPesan']);
+    $captcha = $_POST['txtCaptcha'];
+
+    if ($captcha !== "5") {
+        $_SESSION['flash_error'] = "Captcha salah.";
+        $_SESSION['old'] = ['nama' => $nama, 'email' => $email, 'pesan' => $pesan];
+        header("Location: index.php#contact");
+        exit;
+    }
+
+    $sql = "INSERT INTO tbl_tamu (cnama, cemail, cpesan) VALUES (?, ?, ?)";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "sss", $nama, $email, $pesan);
+    
+    if (mysqli_stmt_execute($stmt)) {
+        $_SESSION['flash_sukses'] = "Pesan terkirim.";
+    }
+    header("Location: index.php#contact");
+    exit;
 }
-
-if ($pesan === '') {
-  $errors[] = 'Pesan wajib diisi.';
-}
-
-if ($captcha === '') {
-  $errors[] = 'Pertanyaan wajib diisi.';
-}
-
-if (mb_strlen($nama) < 3) {
-  $errors[] = 'Nama minimal 3 karakter.';
-}
-
-if (mb_strlen($pesan) < 10) {
-  $errors[] = 'Pesan minimal 10 karakter.';
-}
-
-if ($captcha!=="5") {
-  $errors[] = 'Jawaban '. $captcha.' captcha salah.';
-}
-
-/*
-kondisi di bawah ini hanya dikerjakan jika ada error, 
-simpan nilai lama dan pesan error, lalu redirect (konsep PRG)
-*/
-if (!empty($errors)) {
-  $_SESSION['old'] = [
-    'nama'  => $nama,
-    'email' => $email,
-    'pesan' => $pesan,
-    'captcha' => $captcha,
-  ];
-
-  $_SESSION['flash_error'] = implode('<br>', $errors);
-  redirect_ke('index.php#contact');
-}
-
-#menyiapkan query INSERT dengan prepared statement
-$sql = "INSERT INTO tbl_tamu (cnama, cemail, cpesan) VALUES (?, ?, ?)";
-$stmt = mysqli_prepare($conn, $sql);
-
-if (!$stmt) {
-  #jika gagal prepare, kirim pesan error ke pengguna (tanpa detail sensitif)
-  $_SESSION['flash_error'] = 'Terjadi kesalahan sistem (prepare gagal).';
-  redirect_ke('index.php#contact');
-}
-#bind parameter dan eksekusi (s = string)
-mysqli_stmt_bind_param($stmt, "sss", $nama, $email, $pesan);
-
-if (mysqli_stmt_execute($stmt)) { #jika berhasil, kosongkan old value, beri pesan sukses
-  unset($_SESSION['old']);
-  $_SESSION['flash_sukses'] = 'Terima kasih, data Anda sudah tersimpan.';
-  redirect_ke('index.php#contact'); #pola PRG: kembali ke form / halaman home
-} else { #jika gagal, simpan kembali old value dan tampilkan error umum
-  $_SESSION['old'] = [
-    'nama'  => $nama,
-    'email' => $email,
-    'pesan' => $pesan,
-    'captcha' => $captcha,
-  ];
-  $_SESSION['flash_error'] = 'Data gagal disimpan. Silakan coba lagi.';
-  redirect_ke('index.php#contact');
-}
-#tutup statement
-mysqli_stmt_close($stmt);
-
-$arrAnggota = [
-  "noang" => $_POST["txtNoAng"] ?? "",
-  "nama" => $_POST["txtNmAng"] ?? "",
-  "jabatan" => $_POST["txtJabAng"] ?? "",
-  "tanggal" => $_POST["txtTglJadi"] ?? "",
-  "skill" => $_POST["txtSkill"] ?? "",
-  "gaji" => $_POST["txtGaji"] ?? "",
-  "nowa" => $_POST["txtBatalion"] ?? "",
-  "batalion" => $_POST["txBatalion"] ?? "",
-  "bb" => $_POST["txtBB"] ?? "",
-  "tb" => $_POST["txtTB"] ?? ""
-];
-$_SESSION["anggota"] = $arrAnggota;
-
-header("location: index.php#about");

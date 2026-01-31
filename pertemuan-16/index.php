@@ -39,30 +39,30 @@ require_once __DIR__ . '/fungsi.php';
     </section>
 
     <section id="anggota">
-      <h2>Data Anggota</h2>
+      <h2>Data Anggota organisasi</h2>
       <form action="proses_anggota.php" method="POST">
 
-        <label for="txtNoAng"><span>Nomor Anggota:</span>
+        <label for="txtNoAng"><span>Nomor :</span>
           <input type="text" id="txtNoAng" name="txtNoAng" placeholder="Masukkan Nomor Anggota" required>
         </label>
 
-        <label for="txtNmAng"><span>Tanggal lahir anggota:</span>
+        <label for="txtNmAng"><span>Tanggal lahir :</span>
           <input type="text" id="txtNmAng" name="txtNmAng" placeholder="Masukkan Nama Anggota" required>
         </label>
 
-        <label for="txtJabAng"><span>Jabatan Anggota:</span>
+        <label for="txtJabAng"><span>Jabatan :</span>
           <input type="text" id="txtJabAng" name="txtJabAng" placeholder="Masukkan Jabatan Anggota" required>
         </label>
 
-        <label for="txtTglJadi"><span>Tanggal Jadi Anggota:</span>
+        <label for="txtTglJadi"><span>Tanggal Jadi :</span>
           <input type="text" id="txtTglJadi" name="txtTglJadi" placeholder="Masukkan Tanggal Jadi Anggota" required>
         </label>
 
-        <label for="txtSkill"><span>Kemampuan Anggota:</span>
+        <label for="txtSkill"><span>Kemampuan :</span>
           <input type="text" id="txtSkill" name="txtSkill" placeholder="Masukkan Kemampuan Anggota" required>
         </label>
 
-        <label for="txtGaji"><span>Gaji Anggota:</span>
+        <label for="txtGaji"><span>Gaji :</span>
           <input type="text" id="txtGaji" name="txtGaji" placeholder="Masukkan Gaji Anggota" required>
         </label>
 
@@ -70,7 +70,7 @@ require_once __DIR__ . '/fungsi.php';
           <input type="text" id="txtNoWA" name="txtNoWA" placeholder="Masukkan Nomor WA" required>
         </label>
 
-        <label for="txBatalion"><span>Batalion Anggota:</span>
+        <label for="txBatalion"><span>Batalion :</span>
           <input type="text" id="txBatalion" name="txBatalion" placeholder="Masukkan Batalion Anggota" required>
         </label>
 
@@ -91,14 +91,14 @@ require_once __DIR__ . '/fungsi.php';
     $anggota = $_SESSION["anggota"] ?? [];
 
     $fieldConfig = [
-      "noang" => ["label" => "Nomor Anggota:", "suffix" => ""],
-      "nama" => ["label" => "Nama Anggota:", "suffix" => " &#128526;"],
-      "jabatan" => ["label" => "Jabatan Anggota:", "suffix" => ""],
-      "tanggal" => ["label" => "Tanggal Jadi Anggota:", "suffix" => ""],
-      "skill" => ["label" => "Kemampuan Anggota:", "suffix" => " &#127926;"],
-      "gaji" => ["label" => "Gaji Anggota:", "suffix" => " &hearts;"],
+      "noang" => ["label" => "Nomor :", "suffix" => ""],
+      "nama" => ["label" => "Tanggal lahir :", "suffix" => " &#128526;"],
+      "jabatan" => ["label" => "Jabatan :", "suffix" => ""],
+      "tanggal" => ["label" => "Tanggal Jadi :", "suffix" => ""],
+      "skill" => ["label" => "Kemampuan :", "suffix" => " &#127926;"],
+      "gaji" => ["label" => "Gaji :", "suffix" => " &hearts;"],
       "nowa" => ["label" => "Nomor WA:", "suffix" => " &copy; 2025"],
-      "batalion" => ["label" => "Batalion Anggota:", "suffix" => ""],
+      "batalion" => ["label" => "Batalion :", "suffix" => ""],
       "bb" => ["label" => "Berat Badan:", "suffix" => ""],
       "tb" => ["label" => "Tinggi Badan:", "suffix" => ""],
     ];
