@@ -1,29 +1,34 @@
 <?php
 session_start();
 require_once __DIR__ . '/fungsi.php';
+
+$flash_sukses = $_SESSION['flash_sukses'] ?? ''; 
+$flash_error  = $_SESSION['flash_error'] ?? ''; 
+$old          = $_SESSION['old'] ?? []; 
+$anggota_data = $_SESSION["anggota"] ?? [];
+
+unset($_SESSION['flash_sukses'], $_SESSION['flash_error'], $_SESSION['old']); 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Judul Halaman</title>
+  <title>Sistem Informasi Organisasi</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <header>
-    <h1>Ini Header</h1>
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">
-      &#9776;
-    </button>
+    <h1>Halaman Administrasi</h1>
+    <button class="menu-toggle" id="menuToggle">&#9776;</button>
     <nav>
       <ul>
         <li><a href="#home">Beranda</a></li>
-        <li><a href="#about">Tentang</a></li>
-        <li><a href="#contact">Kontak</a></li>
+        <li><a href="#anggota">Input Anggota</a></li>
+        <li><a href="#about">Data Session</a></li>
+        <li><a href="#contact">Kontak & Data Database</a></li>
       </ul>
     </nav>
   </header>
@@ -31,140 +36,117 @@ require_once __DIR__ . '/fungsi.php';
   <main>
     <section id="home">
       <h2>Selamat Datang</h2>
-      <?php
-      echo "halo dunia!<br>";
-      echo "nama saya hadi";
-      ?>
-      <p>Ini contoh paragraf HTML.</p>
+      <p>Halo dunia! Nama saya Hadi. Ini adalah sistem pengelolaan data anggota dan pesan tamu.</p>
     </section>
 
     <section id="anggota">
-      <h2>Data Anggota organisasi</h2>
+      <h2>Data Anggota Organisasi</h2>
       <form action="proses_anggota.php" method="POST">
-
-        <label for="txtNoAng"><span>Nama:</span>
-          <input type="text" id="txtNoAng" name="txtNoAng" placeholder="Masukkan Nomor Anggota" required>
+        <label for="txtNama"><span>Nama Lengkap:</span>
+          <input type="text" id="txtNama" name="txtNoAng" placeholder="Nama Lengkap" required>
         </label>
 
-        <label for="txtNmAng"><span>Tanggal lahir :</span>
-          <input type="text" id="txtNmAng" name="txtNmAng" placeholder="Masukkan Nama Anggota" required>
+        <label for="txtTglLhr"><span>Tanggal Lahir:</span>
+          <input type="date" id="txtTglLhr" name="txtNmAng" required>
         </label>
 
-        <label for="txtJabAng"><span>Jabatan :</span>
-          <input type="text" id="txtJabAng" name="txtJabAng" placeholder="Masukkan Jabatan Anggota" required>
+        <label for="txtJabAng"><span>Jabatan:</span>
+          <input type="text" id="txtJabAng" name="txtJabAng" placeholder="Jabatan" required>
         </label>
 
-        <label for="txtTglJadi"><span>Tanggal Jadi :</span>
-          <input type="text" id="txtTglJadi" name="txtTglJadi" placeholder="Masukkan Tanggal Jadi Anggota" required>
+        <label for="txtTglJadi"><span>Tanggal Jadi Anggota:</span>
+          <input type="date" id="txtTglJadi" name="txtTglJadi" required>
         </label>
 
-        <label for="txtSkill"><span>Kemampuan :</span>
-          <input type="text" id="txtSkill" name="txtSkill" placeholder="Masukkan Kemampuan Anggota" required>
+        <label for="txtSkill"><span>Kemampuan:</span>
+          <input type="text" id="txtSkill" name="txtSkill" placeholder="Skill" required>
         </label>
 
-        <label for="txtGaji"><span>Gaji :</span>
-          <input type="text" id="txtGaji" name="txtGaji" placeholder="Masukkan Gaji Anggota" required>
+        <label for="txtGaji"><span>Gaji:</span>
+          <input type="number" id="txtGaji" name="txtGaji" placeholder="Gaji" required>
         </label>
 
         <label for="txtNoWA"><span>Nomor WA:</span>
-          <input type="text" id="txtNoWA" name="txtNoWA" placeholder="Masukkan Nomor WA" required>
+          <input type="text" id="txtNoWA" name="txtNoWA" placeholder="08..." required>
         </label>
 
-        <label for="txBatalion"><span>Batalion :</span>
-          <input type="text" id="txBatalion" name="txBatalion" placeholder="Masukkan Batalion Anggota" required>
+        <label for="txBatalion"><span>Batalion:</span>
+          <input type="text" id="txBatalion" name="txBatalion" placeholder="Batalion" required>
         </label>
 
-        <label for="txtBB"><span>Berat Badan:</span>
-          <input type="text" id="txtBB" name="txtBB" placeholder="Masukkan Berat Badan" required>
+        <label for="txtBB"><span>Berat Badan (kg):</span>
+          <input type="number" id="txtBB" name="txtBB" placeholder="BB" required>
         </label>
 
-        <label for="txtTB"><span>Tinggi Badan:</span>
-          <input type="text" id="txtTB" name="txtTB" placeholder="Masukkan Tinggi Badan" required>
+        <label for="txtTB"><span>Tinggi Badan (cm):</span>
+          <input type="number" id="txtTB" name="txtTB" placeholder="TB" required>
         </label>
 
-        <button type="submit">Kirim</button>
-        <button type="reset">Batal</button>
+        <button type="submit">Kirim Data Anggota</button>
+        <button type="reset" class="reset">Batal</button>
       </form>
     </section>
 
     <?php
-    $anggota = $_SESSION["anggota"] ?? [];
-
     $fieldConfig = [
-      "noang" => ["label" => "Nomor :", "suffix" => ""],
-      "nama" => ["label" => "Tanggal lahir :", "suffix" => " &#128526;"],
+      "noang" => ["label" => "Nama :", "suffix" => ""],
+      "nama" => ["label" => "Tanggal Lahir :", "suffix" => ""],
       "jabatan" => ["label" => "Jabatan :", "suffix" => ""],
-      "tanggal" => ["label" => "Tanggal Jadi :", "suffix" => ""],
-      "skill" => ["label" => "Kemampuan :", "suffix" => " &#127926;"],
-      "gaji" => ["label" => "Gaji :", "suffix" => " &hearts;"],
-      "nowa" => ["label" => "Nomor WA:", "suffix" => " &copy; 2025"],
+      "tanggal" => ["label" => "Tanggal Bergabung :", "suffix" => ""],
+      "skill" => ["label" => "Kemampuan :", "suffix" => ""],
+      "gaji" => ["label" => "Gaji :", "suffix" => ""],
+      "nowa" => ["label" => "Nomor WA:", "suffix" => ""],
       "batalion" => ["label" => "Batalion :", "suffix" => ""],
-      "bb" => ["label" => "Berat Badan:", "suffix" => ""],
-      "tb" => ["label" => "Tinggi Badan:", "suffix" => ""],
+      "bb" => ["label" => "Berat Badan:", "suffix" => " kg"],
+      "tb" => ["label" => "Tinggi Badan:", "suffix" => " cm"],
     ];
     ?>
 
     <section id="about">
-      <h2>Tentang Saya</h2>
-      <?= tampilkanData($fieldConfig, $anggota) ?>
+      <h2>Data Anggota Terakhir (Session)</h2>
+      <?= tampilkanData($fieldConfig, $anggota_data) ?>
     </section>
 
-    <?php
-    $flash_sukses = $_SESSION['flash_sukses'] ?? ''; 
-    $flash_error  = $_SESSION['flash_error'] ?? ''; 
-    $old          = $_SESSION['old'] ?? []; 
-
-    unset($_SESSION['flash_sukses'], $_SESSION['flash_error'], $_SESSION['old']); 
-    ?>
-
     <section id="contact">
-      <h2>Kontak Kami</h2>
+      <h2>Hubungi Kami (Database)</h2>
 
-      <?php if (!empty($flash_sukses)): ?>
-        <div style="padding:10px; margin-bottom:10px; background:#d4edda; color:#155724; border-radius:6px;">
+      <?php if ($flash_sukses): ?>
+        <div class="alert alert-success" style="padding:10px; background:#d4edda; color:#155724; border-radius:5px; margin-bottom:10px;">
           <?= $flash_sukses; ?>
         </div>
       <?php endif; ?>
 
-      <?php if (!empty($flash_error)): ?>
-        <div style="padding:10px; margin-bottom:10px; background:#f8d7da; color:#721c24; border-radius:6px;">
+      <?php if ($flash_error): ?>
+        <div class="alert alert-danger" style="padding:10px; background:#f8d7da; color:#721c24; border-radius:5px; margin-bottom:10px;">
           <?= $flash_error; ?>
         </div>
       <?php endif; ?>
 
       <form action="proses.php" method="POST">
-
-        <label for="txtNama"><span>Nama:</span>
-          <input type="text" id="txtNama" name="txtNama" placeholder="Masukkan nama"
-            required autocomplete="name"
-            value="<?= isset($old['nama']) ? htmlspecialchars($old['nama']) : '' ?>">
+        <label for="txtNamaContact"><span>Nama:</span>
+          <input type="text" id="txtNamaContact" name="txtNama" placeholder="Nama Anda" required 
+                 value="<?= $old['nama'] ?? '' ?>">
         </label>
 
         <label for="txtEmail"><span>Email:</span>
-          <input type="email" id="txtEmail" name="txtEmail" placeholder="Masukkan email"
-            required autocomplete="email"
-            value="<?= isset($old['email']) ? htmlspecialchars($old['email']) : '' ?>">
+          <input type="email" id="txtEmail" name="txtEmail" placeholder="Email Anda" required 
+                 value="<?= $old['email'] ?? '' ?>">
         </label>
 
-        <label for="txtPesan"><span>Pesan Anda:</span>
-          <textarea id="txtPesan" name="txtPesan" rows="4" placeholder="Tulis pesan anda..."
-            required><?= isset($old['pesan']) ? htmlspecialchars($old['pesan']) : '' ?></textarea>
-          <small id="charCount">0/200 karakter</small>
+        <label for="txtPesan"><span>Pesan:</span>
+          <textarea id="txtPesan" name="txtPesan" rows="4" required><?= $old['pesan'] ?? '' ?></textarea>
         </label>
 
-        <label for="txtCaptcha"><span>Captcha 2 + 3 = ?</span>
-          <input type="number" id="txtCaptcha" name="txtCaptcha" placeholder="Jawab Pertanyaan..."
-            required
-            value="<?= isset($old['captcha']) ? htmlspecialchars($old['captcha']) : '' ?>">
+        <label for="txtCaptcha"><span>Berapa 2 + 3?</span>
+          <input type="number" id="txtCaptcha" name="txtCaptcha" placeholder="Jawaban" required>
         </label>
 
-        <button type=" submit">Kirim</button>
-          <button type="reset">Batal</button>
+        <button type="submit">Kirim Pesan</button>
+        <button type="reset">Batal</button>
       </form>
 
-      <br>
-      <hr>
-      <h2>Yang menghubungi kami</h2>
+      <br><hr>
+      <h2>Daftar Pesan Tamu (Read Database)</h2>
       <?php include 'read_inc.php'; ?>
     </section>
   </main>
@@ -175,5 +157,4 @@ require_once __DIR__ . '/fungsi.php';
 
   <script src="script.js"></script>
 </body>
-
 </html>
