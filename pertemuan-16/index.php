@@ -42,7 +42,7 @@ require_once __DIR__ . '/fungsi.php';
       <h2>Data Anggota organisasi</h2>
       <form action="proses_anggota.php" method="POST">
 
-        <label for="txtNoAng"><span>Nomor :</span>
+        <label for="txtNoAng"><span>Nama:</span>
           <input type="text" id="txtNoAng" name="txtNoAng" placeholder="Masukkan Nomor Anggota" required>
         </label>
 
@@ -110,11 +110,11 @@ require_once __DIR__ . '/fungsi.php';
     </section>
 
     <?php
-    $flash_sukses = $_SESSION['flash_sukses'] ?? ''; #jika query sukses
-    $flash_error  = $_SESSION['flash_error'] ?? ''; #jika ada error
-    $old          = $_SESSION['old'] ?? []; #untuk nilai lama form
+    $flash_sukses = $_SESSION['flash_sukses'] ?? ''; 
+    $flash_error  = $_SESSION['flash_error'] ?? ''; 
+    $old          = $_SESSION['old'] ?? []; 
 
-    unset($_SESSION['flash_sukses'], $_SESSION['flash_error'], $_SESSION['old']); #bersihkan 3 session ini
+    unset($_SESSION['flash_sukses'], $_SESSION['flash_error'], $_SESSION['old']); 
     ?>
 
     <section id="contact">
